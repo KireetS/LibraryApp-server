@@ -88,10 +88,9 @@ router.post("/login" ,[
 
 //fetchUser
 
-router.post("/getuser" ,fetchUser, async(req,res)=>{
+router.get("/getuser", async(req,res)=>{
   try{
-    let userid = req.user.id
-    let user = await User.findById(userid).select("-password")
+    let user = await User.find({}).select("-password")
     res.json(user)
   }catch(err){
     console.error("error getting users  ",err)
